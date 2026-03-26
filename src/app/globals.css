@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-gray-800 bg-gray-50;
+  }
+}
+
+@layer components {
+  .affiliate-btn {
+    @apply inline-block bg-accent text-white font-bold px-5 py-2.5 rounded-lg
+           text-sm no-underline hover:opacity-90 transition-opacity my-2;
+  }
+  .affiliate-disclosure {
+    @apply bg-gray-100 border border-gray-200 rounded-lg px-4 py-3
+           text-xs text-gray-500 leading-relaxed my-4;
+  }
+  .report-table {
+    @apply w-full border-collapse text-sm my-4;
+  }
+  .report-table th {
+    @apply bg-brand text-white px-3 py-2 text-left text-xs;
+  }
+  .report-table td {
+    @apply border border-gray-200 px-3 py-2 align-top;
+  }
+  .report-table tr:nth-child(even) td {
+    @apply bg-gray-50;
+  }
+}
