@@ -1,5 +1,6 @@
 import { getAllArticles, getArticleBySlug } from '@/lib/articles'
 import type { Metadata } from 'next'
+import DOMPurify from 'isomorphic-dompurify'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -11,7 +12,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
+  const article = getArticleBySlug(decodeURIComponent(slug))
   if (!article) return {}
   return {
     title: article.title,
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
+  const article = getArticleBySlug(decodeURIComponent(slug))
   if (!article) notFound()
 
   return (
@@ -66,7 +67,7 @@ export default async function ArticlePage({ params }: Props) {
                    prose-headings:text-brand prose-headings:font-bold
                    prose-a:text-accent prose-a:no-underline hover:prose-a:underline
                    prose-strong:text-gray-900"
-        dangerouslySetInnerHTML={{ __html: article.content }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}
       />
 
       {/* 記事末尾のナビゲーション */}
