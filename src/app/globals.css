@@ -4,30 +4,148 @@
 
 @layer base {
   body {
-    @apply text-gray-800 bg-white;
+    @apply text-parchment bg-ink antialiased;
+    font-feature-settings: 'kern' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .hero-dot-grid {
+    background-image: radial-gradient(circle, #2A2A2F 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }
 
 @layer components {
   .affiliate-btn {
-    @apply inline-flex items-center gap-2 bg-accent text-white font-bold px-6 py-3 rounded-full
-           text-sm no-underline hover:bg-accent-light transition-all duration-200
-           hover:-translate-y-0.5 hover:shadow-lg my-2;
+    @apply inline-flex items-center gap-2 bg-lime text-ink font-semibold px-6 py-3 rounded-xl
+           text-sm no-underline hover:bg-lime-hover transition-all duration-200
+           hover:shadow-lg hover:shadow-lime/20 my-2;
   }
+
   .affiliate-disclosure {
-    @apply bg-gray-50 border border-gray-200 rounded-xl px-4 py-3
-           text-xs text-gray-400 leading-relaxed my-4;
+    @apply bg-ink-raised rounded-xl px-5 py-4
+           text-xs text-parchment-sub leading-relaxed my-6 border border-ink-border;
   }
+
   .report-table {
-    @apply w-full border-collapse text-sm my-6;
+    @apply w-full border-collapse text-sm my-6 rounded-xl overflow-hidden;
   }
   .report-table th {
-    @apply bg-brand text-white px-4 py-3 text-left text-xs font-bold tracking-wide;
+    @apply bg-ink-raised text-parchment px-4 py-3 text-left text-xs font-semibold tracking-wide border-b border-ink-border;
   }
   .report-table td {
-    @apply border-b border-gray-100 px-4 py-3 align-top;
+    @apply border-b border-ink-border px-4 py-3 align-top text-parchment-sub;
   }
   .report-table tr:hover td {
-    @apply bg-surface;
+    @apply bg-ink-raised;
+  }
+
+  /* スコアバー */
+  .score-bar {
+    @apply flex items-center gap-3 my-1;
+  }
+  .score-bar .label {
+    @apply text-xs font-medium text-parchment-sub w-20 flex-shrink-0;
+  }
+  .score-bar .bar-bg {
+    @apply flex-1 h-2 bg-ink-border rounded-full overflow-hidden;
+  }
+  .score-bar .bar-fill {
+    @apply h-full rounded-full transition-all duration-500;
+    background: linear-gradient(90deg, #CEFF47, #A8E063);
+  }
+  .score-bar .value {
+    @apply text-xs font-bold text-parchment w-8 text-right;
+  }
+
+  /* ハイライトボックス */
+  .highlight-box {
+    @apply bg-lime/5 border border-lime/20 rounded-xl p-5 my-6;
+  }
+  .highlight-box.warning {
+    @apply bg-amber-400/5 border-amber-400/20;
+  }
+  .highlight-box h4, .highlight-box strong:first-child {
+    @apply text-parchment font-bold text-sm mb-2 block;
+  }
+
+  /* FAQセクション */
+  .faq-section {
+    @apply my-10 space-y-4;
+  }
+  .faq-item {
+    @apply bg-ink-raised rounded-xl p-5 border border-ink-border;
+  }
+  .faq-item .question {
+    @apply font-bold text-parchment text-sm mb-2 flex items-start gap-2;
+  }
+  .faq-item .question::before {
+    content: 'Q';
+    @apply text-lime font-black text-xs bg-lime/10 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0;
+  }
+  .faq-item .answer {
+    @apply text-parchment-sub text-sm leading-relaxed pl-8;
+  }
+
+  /* 商品カード内のメリデメ */
+  .pros-cons {
+    @apply grid md:grid-cols-2 gap-3 my-4;
+  }
+  .pros-cons .pros, .pros-cons .cons {
+    @apply rounded-xl p-4 text-sm;
+  }
+  .pros-cons .pros {
+    @apply bg-emerald-400/5 border border-emerald-400/20 text-parchment-sub;
+  }
+  .pros-cons .cons {
+    @apply bg-rose-400/5 border border-rose-400/20 text-parchment-sub;
+  }
+  .pros-cons .pros li::marker {
+    content: '+ ';
+    color: #34d399;
+  }
+  .pros-cons .cons li::marker {
+    content: '- ';
+    color: #fb7185;
+  }
+
+  /* 推薦ボックス */
+  .recommendation-box {
+    @apply bg-lime/5 border border-lime/20 rounded-xl p-5 my-6;
+  }
+  .recommendation-box strong {
+    @apply text-lime;
+  }
+
+  /* 比較表の改善 */
+  .prose table {
+    @apply rounded-xl overflow-hidden border border-ink-border text-sm;
+  }
+  .prose table th {
+    @apply bg-ink-raised text-parchment font-semibold text-xs border-b border-ink-border px-4 py-3;
+  }
+  .prose table td {
+    @apply border-b border-ink-border px-4 py-3 text-parchment-sub;
+  }
+  .prose table tr:hover td {
+    @apply bg-ink-raised/50;
   }
 }
