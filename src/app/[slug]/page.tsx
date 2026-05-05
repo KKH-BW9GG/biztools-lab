@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import CategoryIcon from "@/components/CategoryIcon";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -59,100 +58,115 @@ export default async function ArticlePage({ params }: Props) {
     .slice(0, 3);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }}
       />
 
-      {/* パンくず */}
-      <nav className="text-[11px] text-parchment-sub mb-8 flex items-center gap-1.5">
-        <Link href="/" className="hover:text-parchment transition-colors">
-          ホーム
-        </Link>
-        <span className="text-ink-divider">/</span>
-        <Link
-          href={`/category/${encodeURIComponent(article.category)}/`}
-          className="hover:text-parchment transition-colors"
-        >
-          {article.category}
-        </Link>
-      </nav>
+      {/* Article masthead */}
+      <header className="max-w-3xl mx-auto px-4 pt-10 md:pt-16 pb-10">
+        <nav className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-ink-muted mb-10">
+          <Link href="/" className="hover:text-navy transition-colors">
+            Home
+          </Link>
+          <span className="text-ink-faint">/</span>
+          <Link
+            href={`/category/${encodeURIComponent(article.category)}/`}
+            className="hover:text-navy transition-colors"
+          >
+            {article.category}
+          </Link>
+        </nav>
 
-      {/* ヘッダー */}
-      <div className="flex items-start gap-4 mb-8">
-        <CategoryIcon category={article.category} size="lg" />
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-3">
-            <Link
-              href={`/category/${encodeURIComponent(article.category)}/`}
-              className="text-[11px] font-semibold text-lime hover:underline tracking-widest uppercase"
-            >
-              {article.category}
-            </Link>
-            <span className="text-[11px] text-parchment-sub">
-              {article.date}
-            </span>
-          </div>
-          <h1 className="text-2xl md:text-[28px] font-bold text-parchment leading-tight">
-            {article.title}
-          </h1>
+        <div className="flex items-baseline gap-4 mb-6 pb-4 border-b border-ink/15">
+          <Link
+            href={`/category/${encodeURIComponent(article.category)}/`}
+            className="label-meta hover:text-navy transition-colors"
+          >
+            {article.category}
+          </Link>
+          <span className="font-display text-[12px] text-ink-muted tabular-nums tracking-wide">
+            {article.date}
+          </span>
         </div>
-      </div>
 
-      {/* 記事本文 */}
-      <article
-        className="prose prose-sm md:prose-base max-w-none prose-invert
-                   prose-headings:text-parchment prose-headings:font-bold prose-headings:tracking-tight
-                   prose-h2:text-lg prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-3 prose-h2:border-b prose-h2:border-ink-border
-                   prose-h3:text-[15px] prose-h3:mt-8 prose-h3:mb-3
-                   prose-a:text-lime prose-a:no-underline hover:prose-a:underline prose-a:font-medium
-                   prose-strong:text-parchment prose-strong:font-semibold
-                   prose-li:text-parchment-sub
-                   prose-p:leading-[1.8] prose-p:text-parchment-sub
-                   prose-table:text-sm prose-th:bg-ink-raised prose-th:font-semibold prose-th:text-parchment
-                   prose-td:border-ink-border
-                   prose-img:rounded-xl"
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(article.content),
-        }}
-      />
+        <h1 className="font-jp-serif text-[28px] md:text-[40px] font-medium text-ink leading-[1.3] tracking-tight text-balance">
+          {article.title}
+        </h1>
 
-      {/* 関連記事 */}
-      {related.length > 0 && (
-        <div className="mt-16 pt-8 border-t border-ink-border">
-          <h3 className="text-sm font-bold text-parchment mb-4">関連記事</h3>
-          <div className="grid gap-2">
-            {related.map((r) => (
-              <Link
-                key={r.slug}
-                href={`/${r.slug}/`}
-                className="group flex items-center gap-3 p-3 rounded-xl hover:bg-ink-raised border border-transparent hover:border-ink-border transition-colors"
-              >
-                <CategoryIcon category={r.category} size="sm" />
-                <span className="text-sm text-parchment-sub group-hover:text-parchment transition-colors line-clamp-1">
-                  {r.title}
-                </span>
-              </Link>
-            ))}
-          </div>
+        {article.meta_description && (
+          <p className="mt-6 font-jp-serif text-[16px] md:text-[18px] text-ink-soft leading-[1.85] italic max-w-2xl border-l-2 border-navy pl-5">
+            {article.meta_description}
+          </p>
+        )}
+      </header>
+
+      <div className="max-w-3xl mx-auto px-4">
+        {/* 記事本文 */}
+        <article
+          className="prose prose-sm md:prose-base max-w-none
+                     prose-headings:font-jp-serif prose-headings:text-ink prose-headings:font-semibold prose-headings:tracking-tight
+                     prose-h2:text-[22px] prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-ink/30
+                     prose-h3:text-[17px] prose-h3:mt-10 prose-h3:mb-3
+                     prose-a:text-navy prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4 prose-a:decoration-1 prose-a:font-medium
+                     prose-strong:text-ink prose-strong:font-semibold
+                     prose-li:text-ink-soft
+                     prose-p:leading-[1.95] prose-p:text-ink-soft
+                     prose-blockquote:border-l-2 prose-blockquote:border-navy prose-blockquote:not-italic prose-blockquote:font-jp-serif prose-blockquote:text-ink
+                     prose-img:rounded-none"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(article.content),
+          }}
+        />
+
+        {/* 関連記事 */}
+        {related.length > 0 && (
+          <section className="mt-20 pt-10 border-t border-ink/30">
+            <div className="flex items-baseline justify-between mb-6">
+              <p className="label-meta">Related</p>
+              <p className="font-display italic text-[13px] text-ink-muted">
+                同じ領域から
+              </p>
+            </div>
+            <ul className="divide-y divide-ink/15 border-t border-b border-ink/15">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/${r.slug}/`}
+                    className="group flex items-baseline gap-5 py-4 hover:pl-2 transition-all duration-300"
+                  >
+                    <span className="font-display italic text-navy text-[14px]">
+                      —
+                    </span>
+                    <span className="font-jp-serif text-[16px] text-ink group-hover:text-navy transition-colors flex-1 line-clamp-2">
+                      {r.title}
+                    </span>
+                    <span className="font-display text-[11px] text-ink-muted hidden sm:block">
+                      {r.date}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* ナビゲーション */}
+        <div className="mt-16 mb-20 pt-8 border-t border-ink flex items-center justify-between">
+          <Link
+            href="/"
+            className="font-display italic text-[14px] text-ink hover:text-navy border-b border-ink hover:border-navy pb-1 transition-colors"
+          >
+            ← All Reviews
+          </Link>
+          <Link
+            href={`/category/${encodeURIComponent(article.category)}/`}
+            className="font-jp-serif text-[14px] text-ink-soft hover:text-navy transition-colors"
+          >
+            {article.category} →
+          </Link>
         </div>
-      )}
-
-      {/* ナビゲーション */}
-      <div className="mt-10 pt-6 border-t border-ink-border flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-[13px] text-lime hover:underline font-medium"
-        >
-          ← 記事一覧
-        </Link>
-        <Link
-          href={`/category/${encodeURIComponent(article.category)}/`}
-          className="text-[13px] text-parchment-sub hover:text-parchment transition-colors"
-        >
-          {article.category} →
-        </Link>
       </div>
     </div>
   );

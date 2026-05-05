@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Noto_Sans_JP } from "next/font/google";
+import { Fraunces, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  variable: "--font-fraunces",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  axes: ["opsz"],
+  style: ["normal", "italic"],
 });
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
-  variable: "--font-noto",
+  variable: "--font-noto-sans",
   display: "swap",
+  weight: ["400", "500", "700"],
+});
+
+const notoSerifJP = Noto_Serif_JP({
+  subsets: ["latin"],
+  variable: "--font-noto-serif",
+  display: "swap",
+  weight: ["400", "500", "700", "900"],
 });
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -69,7 +78,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${bricolage.variable} ${notoSansJP.variable} min-h-screen flex flex-col bg-ink text-parchment`}
+        className={`${fraunces.variable} ${notoSansJP.variable} ${notoSerifJP.variable} min-h-screen flex flex-col bg-paper text-ink`}
       >
         <Header />
         <main className="flex-1">{children}</main>

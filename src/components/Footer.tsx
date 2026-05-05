@@ -2,11 +2,11 @@ import Link from "next/link";
 
 const LINKS = [
   {
-    name: "ビジネスSaaS",
+    name: "ビジネスSaaS・ツール",
     href: "/category/%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9SaaS%E3%83%BB%E3%83%84%E3%83%BC%E3%83%AB/",
   },
   {
-    name: "デスク・PC",
+    name: "デスク・PCアクセサリ",
     href: "/category/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%BBPC%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5%E3%83%AA/",
   },
   {
@@ -21,29 +21,33 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-ink-raised border-t border-ink-border mt-0">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-10">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-lime flex-shrink-0" />
-              <p className="font-bold text-parchment text-sm">BizTools Lab</p>
-            </div>
-            <p className="text-xs text-parchment-sub leading-relaxed">
-              使って良かったものだけ。正直レビュー。
+    <footer className="border-t border-ink bg-paper">
+      <div className="max-w-6xl mx-auto px-6 py-14">
+        <div className="grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-5">
+            <Link href="/" className="flex items-baseline gap-1.5 mb-3">
+              <span className="font-display text-[22px] font-semibold text-ink tracking-tight leading-none">
+                BizTools
+              </span>
+              <span className="font-display italic text-[22px] font-medium text-navy tracking-tight leading-none">
+                Lab
+              </span>
+            </Link>
+            <p className="font-jp-serif text-[14px] text-ink-soft leading-[1.85] max-w-sm">
+              本当に使えた道具だけを、短い手記にして残しています。
+              <br />
+              書くのもひとり、買うのもひとり。
             </p>
           </div>
 
-          <div>
-            <p className="text-[11px] font-semibold text-parchment-sub uppercase tracking-widest mb-4">
-              Categories
-            </p>
+          <div className="md:col-span-3 md:col-start-7">
+            <p className="label-meta mb-5">Sections</p>
             <ul className="space-y-2.5">
               {LINKS.map((l) => (
                 <li key={l.name}>
                   <Link
                     href={l.href}
-                    className="text-xs text-parchment-sub hover:text-parchment transition-colors"
+                    className="font-jp-serif text-[14px] text-ink-soft hover:text-navy transition-colors"
                   >
                     {l.name}
                   </Link>
@@ -52,20 +56,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <p className="text-[11px] font-semibold text-parchment-sub uppercase tracking-widest mb-4">
-              About
-            </p>
-            <p className="text-xs text-parchment-sub leading-relaxed">
-              当サイトはAmazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定された
-              Amazonアソシエイト・プログラムの参加者です。
+          <div className="md:col-span-3">
+            <p className="label-meta mb-5">Disclosure</p>
+            <p className="text-[12px] text-ink-soft leading-[1.8]">
+              当サイトはAmazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたAmazonアソシエイト・プログラムの参加者です。
             </p>
           </div>
         </div>
 
-        <div className="border-t border-ink-border mt-10 pt-6">
-          <p className="text-[11px] text-parchment-sub text-center">
-            &copy; {new Date().getFullYear()} BizTools Lab
+        <div className="mt-14 pt-6 border-t border-paper-rule flex items-baseline justify-between">
+          <p className="font-display text-[11px] text-ink-muted tabular-nums tracking-wider">
+            &copy; {new Date().getFullYear()} BizTools Lab. All rights reserved.
+          </p>
+          <p className="font-display italic text-[11px] text-ink-muted">
+            Made with care · Tokyo
           </p>
         </div>
       </div>

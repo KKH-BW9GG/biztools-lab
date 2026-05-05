@@ -4,148 +4,158 @@
 
 @layer base {
   body {
-    @apply text-parchment bg-ink antialiased;
-    font-feature-settings: 'kern' 1;
+    @apply text-ink bg-paper antialiased;
+    font-feature-settings: 'kern' 1, 'palt' 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Grain overlay */
+  /* Subtle paper grain */
   body::after {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   h1, h2, h3, h4 {
     @apply tracking-tight;
   }
+
+  ::selection {
+    background: #1A3654;
+    color: #F4F0E8;
+  }
 }
 
 @layer utilities {
-  .hero-dot-grid {
-    background-image: radial-gradient(circle, #2A2A2F 1px, transparent 1px);
-    background-size: 24px 24px;
+  .font-display {
+    font-family: var(--font-fraunces), var(--font-noto-serif), Georgia, serif;
+    font-optical-sizing: auto;
+  }
+  .font-jp-serif {
+    font-family: var(--font-noto-serif), serif;
+  }
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
 @layer components {
+  /* Hairline rules used as section dividers */
+  .rule {
+    @apply h-px w-full bg-ink/15;
+  }
+  .rule-strong {
+    @apply h-px w-full bg-ink;
+  }
+
+  /* Editorial label (small caps) */
+  .label-meta {
+    @apply text-[10px] font-semibold tracking-[0.2em] uppercase text-ink-muted;
+  }
+
   .affiliate-btn {
-    @apply inline-flex items-center gap-2 bg-lime text-ink font-semibold px-6 py-3 rounded-xl
-           text-sm no-underline hover:bg-lime-hover transition-all duration-200
-           hover:shadow-lg hover:shadow-lime/20 my-2;
+    @apply inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-none
+           text-sm no-underline hover:bg-navy transition-all duration-200 my-2 border border-ink hover:border-navy;
   }
 
   .affiliate-disclosure {
-    @apply bg-ink-raised rounded-xl px-5 py-4
-           text-xs text-parchment-sub leading-relaxed my-6 border border-ink-border;
+    @apply bg-paper-deep px-5 py-4 border-l-2 border-navy
+           text-xs text-ink-soft leading-relaxed my-6;
   }
 
   .report-table {
-    @apply w-full border-collapse text-sm my-6 rounded-xl overflow-hidden;
+    @apply w-full border-collapse text-sm my-6;
   }
   .report-table th {
-    @apply bg-ink-raised text-parchment px-4 py-3 text-left text-xs font-semibold tracking-wide border-b border-ink-border;
+    @apply bg-paper-deep text-ink px-4 py-3 text-left text-xs font-semibold tracking-wide border-b border-ink;
   }
   .report-table td {
-    @apply border-b border-ink-border px-4 py-3 align-top text-parchment-sub;
-  }
-  .report-table tr:hover td {
-    @apply bg-ink-raised;
+    @apply border-b border-paper-rule px-4 py-3 align-top text-ink-soft;
   }
 
-  /* スコアバー */
+  /* Score bar */
   .score-bar {
     @apply flex items-center gap-3 my-1;
   }
   .score-bar .label {
-    @apply text-xs font-medium text-parchment-sub w-20 flex-shrink-0;
+    @apply text-xs font-medium text-ink-muted w-20 flex-shrink-0;
   }
   .score-bar .bar-bg {
-    @apply flex-1 h-2 bg-ink-border rounded-full overflow-hidden;
+    @apply flex-1 h-1.5 bg-paper-rule overflow-hidden;
   }
   .score-bar .bar-fill {
-    @apply h-full rounded-full transition-all duration-500;
-    background: linear-gradient(90deg, #CEFF47, #A8E063);
+    @apply h-full bg-navy transition-all duration-500;
   }
   .score-bar .value {
-    @apply text-xs font-bold text-parchment w-8 text-right;
+    @apply text-xs font-bold text-ink w-8 text-right;
   }
 
-  /* ハイライトボックス */
+  /* Highlight box */
   .highlight-box {
-    @apply bg-lime/5 border border-lime/20 rounded-xl p-5 my-6;
+    @apply bg-paper-deep border-l-2 border-navy p-5 my-6;
   }
   .highlight-box.warning {
-    @apply bg-amber-400/5 border-amber-400/20;
+    @apply border-l-2 border-ink;
   }
   .highlight-box h4, .highlight-box strong:first-child {
-    @apply text-parchment font-bold text-sm mb-2 block;
+    @apply text-ink font-bold text-sm mb-2 block;
   }
 
-  /* FAQセクション */
+  /* FAQ */
   .faq-section {
-    @apply my-10 space-y-4;
+    @apply my-10 space-y-0 border-t border-paper-rule;
   }
   .faq-item {
-    @apply bg-ink-raised rounded-xl p-5 border border-ink-border;
+    @apply py-5 border-b border-paper-rule;
   }
   .faq-item .question {
-    @apply font-bold text-parchment text-sm mb-2 flex items-start gap-2;
+    @apply font-bold text-ink text-sm mb-2 flex items-start gap-2;
   }
   .faq-item .question::before {
-    content: 'Q';
-    @apply text-lime font-black text-xs bg-lime/10 w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0;
+    content: 'Q.';
+    font-family: var(--font-fraunces), serif;
+    @apply text-navy font-semibold text-base flex-shrink-0;
   }
   .faq-item .answer {
-    @apply text-parchment-sub text-sm leading-relaxed pl-8;
+    @apply text-ink-soft text-sm leading-relaxed pl-7;
   }
 
-  /* 商品カード内のメリデメ */
+  /* Pros/cons */
   .pros-cons {
-    @apply grid md:grid-cols-2 gap-3 my-4;
+    @apply grid md:grid-cols-2 gap-0 my-4 border border-paper-rule;
   }
   .pros-cons .pros, .pros-cons .cons {
-    @apply rounded-xl p-4 text-sm;
+    @apply p-5 text-sm;
   }
   .pros-cons .pros {
-    @apply bg-emerald-400/5 border border-emerald-400/20 text-parchment-sub;
+    @apply border-r border-paper-rule;
   }
-  .pros-cons .cons {
-    @apply bg-rose-400/5 border border-rose-400/20 text-parchment-sub;
-  }
-  .pros-cons .pros li::marker {
-    content: '+ ';
-    color: #34d399;
-  }
-  .pros-cons .cons li::marker {
-    content: '- ';
-    color: #fb7185;
+  .pros-cons .pros li::marker, .pros-cons .cons li::marker {
+    @apply text-ink-muted;
   }
 
-  /* 推薦ボックス */
+  /* Recommendation */
   .recommendation-box {
-    @apply bg-lime/5 border border-lime/20 rounded-xl p-5 my-6;
+    @apply bg-paper-deep border-l-2 border-navy p-5 my-6;
   }
   .recommendation-box strong {
-    @apply text-lime;
+    @apply text-navy;
   }
 
-  /* 比較表の改善 */
+  /* Article tables */
   .prose table {
-    @apply rounded-xl overflow-hidden border border-ink-border text-sm;
+    @apply text-sm border-t border-b border-ink;
   }
   .prose table th {
-    @apply bg-ink-raised text-parchment font-semibold text-xs border-b border-ink-border px-4 py-3;
+    @apply bg-transparent text-ink font-semibold text-xs border-b border-ink px-4 py-3 tracking-wide uppercase;
   }
   .prose table td {
-    @apply border-b border-ink-border px-4 py-3 text-parchment-sub;
-  }
-  .prose table tr:hover td {
-    @apply bg-ink-raised/50;
+    @apply border-b border-paper-rule px-4 py-3 text-ink-soft;
   }
 }
