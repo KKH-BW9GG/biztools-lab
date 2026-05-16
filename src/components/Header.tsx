@@ -12,11 +12,11 @@ const CATEGORIES = [
 
 function Logo() {
   return (
-    <span className="flex items-baseline gap-[3px] leading-none">
+    <span className="flex items-baseline gap-[4px] leading-none">
       <span className="text-[19px] font-bold tracking-tight text-ink">
         BizTools
       </span>
-      <span className="text-[19px] font-bold tracking-tight text-accent">
+      <span className="font-display italic text-[21px] font-medium tracking-tight text-accent">
         Lab
       </span>
     </span>

@@ -27,8 +27,8 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <div className="bg-paper min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 pt-12 md:pt-16 pb-20">
-        <nav className="flex items-center gap-2 text-[12px] text-ink-muted mb-8">
+      <div className="max-w-5xl mx-auto px-6 pt-9 md:pt-12 pb-16">
+        <nav className="flex items-center gap-2 text-[12px] text-ink-muted mb-7">
           <Link href="/" className="hover:text-accent transition-colors">
             ホーム
           </Link>
@@ -36,18 +36,23 @@ export default async function CategoryPage({ params }: Props) {
           <span className="text-ink">{category}</span>
         </nav>
 
-        <div className="border-b border-paper-rule pb-8 mb-10">
-          <p className="label-meta mb-3">Section</p>
-          <h1 className="text-[28px] md:text-[40px] font-bold text-ink leading-[1.4] tracking-tight">
+        <div className="pb-6 mb-8">
+          <div className="rule-strong mb-3" />
+          <div className="flex items-baseline justify-between">
+            <span className="font-display italic text-[15px] text-accent">
+              Section
+            </span>
+            <span className="text-[12px] text-ink-muted">
+              全{" "}
+              <span className="font-display text-[14px] text-ink tabular-nums">
+                {articles.length}
+              </span>{" "}
+              本
+            </span>
+          </div>
+          <h1 className="mt-3 text-[26px] md:text-[36px] font-bold text-ink leading-[1.5] tracking-tight">
             {category}
           </h1>
-          <p className="mt-3 text-[13px] text-ink-muted">
-            現在{" "}
-            <span className="font-display text-[14px] text-ink tabular-nums">
-              {articles.length}
-            </span>{" "}
-            本のレビューを公開中
-          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -56,7 +61,7 @@ export default async function CategoryPage({ params }: Props) {
           ))}
         </div>
 
-        <div className="mt-16 pt-8 border-t border-paper-rule">
+        <div className="mt-12 pt-7 border-t border-paper-rule">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-[14px] font-semibold text-ink hover:text-accent transition-colors"

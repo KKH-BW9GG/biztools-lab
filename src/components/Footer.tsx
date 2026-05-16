@@ -27,12 +27,12 @@ export default function Footer() {
           <div className="md:col-span-6">
             <Link
               href="/"
-              className="flex items-baseline gap-[3px] leading-none"
+              className="flex items-baseline gap-[4px] leading-none"
             >
               <span className="text-[20px] font-bold tracking-tight">
                 BizTools
               </span>
-              <span className="text-[20px] font-bold tracking-tight text-accent">
+              <span className="font-display italic text-[22px] font-medium tracking-tight text-accent">
                 Lab
               </span>
             </Link>

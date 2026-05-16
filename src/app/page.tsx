@@ -5,8 +5,8 @@ import Link from "next/link";
 function ArrowRight({ className = "" }: { className?: string }) {
   return (
     <svg
-      width="15"
-      height="15"
+      width="14"
+      height="14"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -20,6 +20,22 @@ function ArrowRight({ className = "" }: { className?: string }) {
   );
 }
 
+function SectionHead({ jp, en }: { jp: string; en: string }) {
+  return (
+    <div className="mb-6">
+      <div className="rule-strong mb-3" />
+      <div className="flex items-baseline justify-between">
+        <h2 className="text-[20px] md:text-[25px] font-bold text-ink tracking-tight">
+          {jp}
+        </h2>
+        <span className="font-display italic text-[16px] text-accent">
+          {en}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const articles = getAllArticles();
   const picks = articles.slice(0, 3);
@@ -28,36 +44,39 @@ export default function HomePage() {
   return (
     <div className="bg-paper">
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-20 md:pt-28 pb-16 md:pb-20">
-        <p className="animate-fadeUp flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted mb-7">
-          <span className="h-px w-8 bg-accent" />
-          BizTools Lab — Reviews
+      <section className="max-w-5xl mx-auto px-6 pt-14 md:pt-20 pb-12 md:pb-14">
+        <p className="animate-fadeUp flex items-center gap-3 mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted">
+          <span className="font-display italic normal-case tracking-normal text-[15px] text-accent">
+            Reviews
+          </span>
+          <span className="h-px w-7 bg-accent/40" />
+          ビジネスツール・ガジェット
         </p>
 
-        <h1 className="animate-fadeUp-d1 text-[31px] md:text-[52px] font-bold text-ink leading-[1.32] md:leading-[1.28] tracking-tight text-balance">
+        <h1 className="animate-fadeUp-d1 text-[29px] md:text-[48px] font-bold text-ink leading-[1.45] md:leading-[1.34] tracking-tight text-balance">
           仕事がはかどる道具を、
           <br className="hidden sm:block" />
           <span className="text-accent">えらび抜いて</span>紹介する。
         </h1>
 
-        <p className="animate-fadeUp-d2 mt-7 text-[15px] md:text-[16px] text-ink-soft leading-[1.95] max-w-xl">
+        <p className="animate-fadeUp-d2 mt-5 text-[14px] md:text-[15px] text-ink-soft leading-[1.8] max-w-xl">
           実際に使って良かったビジネスツール・ガジェットを中心に、気になる定番アイテムも機能や価格を調べてレビュー。仕事道具えらびの参考にどうぞ。
         </p>
 
-        <div className="animate-fadeUp-d3 mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+        <div className="animate-fadeUp-d3 mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link
             href="#picks"
-            className="inline-flex items-center gap-2 bg-ink text-paper text-[14px] font-semibold px-6 py-3 rounded-md hover:bg-accent transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-ink text-paper text-[13px] font-semibold px-5 py-2.5 rounded-md hover:bg-accent transition-colors duration-200"
           >
             おすすめ記事を見る
             <ArrowRight />
           </Link>
-          <span className="text-[13px] text-ink-muted">
+          <span className="text-[12px] text-ink-muted">
             現在{" "}
-            <span className="font-display text-[15px] text-ink tabular-nums">
+            <span className="font-display text-[14px] text-ink tabular-nums">
               {articles.length}
             </span>{" "}
-            本の記事を公開中
+            本公開中
           </span>
         </div>
       </section>
@@ -65,43 +84,38 @@ export default function HomePage() {
       {/* Pick Up */}
       {picks.length > 0 && (
         <section id="picks" className="border-t border-paper-rule">
-          <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
-            <div className="flex items-baseline justify-between mb-8">
-              <h2 className="text-[22px] md:text-[28px] font-bold text-ink tracking-tight">
-                おすすめ記事
-              </h2>
-              <p className="label-meta">Pick Up</p>
-            </div>
+          <div className="max-w-5xl mx-auto px-6 py-12 md:py-14">
+            <SectionHead jp="おすすめ記事" en="Pick Up" />
 
             <div className="grid gap-5 md:grid-cols-3">
               {picks.map((article, i) => (
                 <Link
                   key={article.slug}
                   href={`/${article.slug}/`}
-                  className="group flex h-full flex-col rounded-lg border border-paper-rule bg-paper p-6 transition-all duration-200 hover:border-accent/40 hover:shadow-[0_10px_32px_-14px_rgba(29,78,216,0.3)]"
+                  className="group flex h-full flex-col rounded-md border border-paper-rule bg-paper p-5 transition-all duration-200 hover:border-accent/45 hover:shadow-[0_10px_30px_-16px_rgba(29,78,216,0.35)]"
                 >
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="inline-flex items-center rounded-full bg-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-paper">
+                  <div className="flex items-center gap-2 mb-3.5">
+                    <span className="inline-flex items-center rounded-sm bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.06em] text-paper">
                       Pick
                     </span>
-                    <span className="font-display text-[13px] text-ink-faint tabular-nums">
+                    <span className="font-display italic text-[14px] text-ink-faint tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
 
-                  <span className="text-[11px] font-semibold text-accent mb-2">
+                  <span className="text-[11px] font-semibold text-accent mb-1.5">
                     {article.category}
                   </span>
 
-                  <h3 className="text-[17px] font-bold text-ink leading-[1.55] tracking-tight group-hover:text-accent transition-colors line-clamp-3">
+                  <h3 className="text-[16px] font-bold text-ink leading-[1.6] tracking-tight group-hover:text-accent transition-colors line-clamp-3">
                     {article.title}
                   </h3>
 
-                  <p className="mt-2.5 text-[13px] text-ink-muted leading-[1.8] line-clamp-3">
+                  <p className="mt-2 text-[12.5px] text-ink-muted leading-[1.75] line-clamp-3">
                     {article.meta_description}
                   </p>
 
-                  <div className="mt-auto pt-5 flex items-center justify-between">
+                  <div className="mt-auto pt-4 flex items-center justify-between border-t border-paper-rule mt-4">
                     <span className="font-display text-[12px] text-ink-faint tabular-nums">
                       {article.date}
                     </span>
@@ -119,13 +133,8 @@ export default function HomePage() {
 
       {/* All articles */}
       <section className="border-t border-paper-rule bg-paper-deep">
-        <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
-          <div className="flex items-baseline justify-between mb-10">
-            <h2 className="text-[22px] md:text-[28px] font-bold text-ink tracking-tight">
-              記事一覧
-            </h2>
-            <p className="label-meta">All Articles</p>
-          </div>
+        <div className="max-w-5xl mx-auto px-6 py-12 md:py-14">
+          <SectionHead jp="記事一覧" en="All Articles" />
 
           {rest.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -138,7 +147,7 @@ export default function HomePage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 rounded-lg border border-paper-rule bg-paper">
+            <div className="text-center py-16 rounded-md border border-paper-rule bg-paper">
               <p className="text-ink-muted text-sm">
                 記事は順次追加していきます
               </p>

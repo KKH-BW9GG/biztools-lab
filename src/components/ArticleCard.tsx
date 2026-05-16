@@ -12,27 +12,27 @@ export default function ArticleCard({
 
   return (
     <Link href={`/${article.slug}/`} className="block group h-full">
-      <article className="flex h-full flex-col rounded-lg border border-paper-rule bg-paper p-6 transition-all duration-200 hover:border-ink/25 hover:shadow-[0_8px_28px_-12px_rgba(20,22,26,0.18)]">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-[11px] font-semibold tracking-[0.04em] text-accent">
+      <article className="flex h-full flex-col rounded-md border border-paper-rule bg-paper p-5 transition-all duration-200 hover:border-ink/30 hover:shadow-[0_8px_24px_-14px_rgba(20,22,26,0.22)]">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[11px] font-semibold tracking-[0.03em] text-accent">
             {article.category}
           </span>
           {num && (
-            <span className="font-display text-[13px] text-ink-faint tabular-nums">
+            <span className="font-display italic text-[13px] text-ink-faint tabular-nums">
               {num}
             </span>
           )}
         </div>
 
-        <h2 className="text-[16px] font-bold text-ink leading-[1.6] tracking-tight group-hover:text-accent transition-colors duration-200 line-clamp-3">
+        <h2 className="text-[15px] font-bold text-ink leading-[1.65] tracking-tight group-hover:text-accent transition-colors duration-200 line-clamp-3">
           {article.title}
         </h2>
 
-        <p className="mt-2.5 text-[13px] text-ink-muted leading-[1.8] line-clamp-2">
+        <p className="mt-2 text-[12.5px] text-ink-muted leading-[1.75] line-clamp-2">
           {article.meta_description}
         </p>
 
-        <div className="mt-auto pt-5 flex items-center justify-between">
+        <div className="mt-4 pt-3.5 flex items-center justify-between border-t border-paper-rule">
           <span className="font-display text-[12px] text-ink-faint tabular-nums">
             {article.date}
           </span>

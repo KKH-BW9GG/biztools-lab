@@ -65,8 +65,8 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       {/* Article masthead */}
-      <header className="max-w-3xl mx-auto px-6 pt-12 md:pt-16 pb-10">
-        <nav className="flex items-center gap-2 text-[12px] text-ink-muted mb-8">
+      <header className="max-w-3xl mx-auto px-6 pt-9 md:pt-12 pb-8">
+        <nav className="flex items-center gap-2 text-[12px] text-ink-muted mb-7">
           <Link href="/" className="hover:text-accent transition-colors">
             ホーム
           </Link>
@@ -91,12 +91,12 @@ export default async function ArticlePage({ params }: Props) {
           </span>
         </div>
 
-        <h1 className="text-[26px] md:text-[38px] font-bold text-ink leading-[1.5] tracking-tight text-balance">
+        <h1 className="text-[25px] md:text-[36px] font-bold text-ink leading-[1.55] tracking-tight text-balance">
           {article.title}
         </h1>
 
         {article.meta_description && (
-          <p className="mt-6 text-[15px] md:text-[16px] text-ink-soft leading-[1.95] max-w-2xl border-l-2 border-accent pl-5">
+          <p className="mt-5 text-[14px] md:text-[15px] text-ink-soft leading-[1.85] max-w-2xl border-l-2 border-accent pl-4">
             {article.meta_description}
           </p>
         )}
@@ -107,12 +107,12 @@ export default async function ArticlePage({ params }: Props) {
         <article
           className="prose prose-sm md:prose-base max-w-none
                      prose-headings:text-ink prose-headings:font-bold prose-headings:tracking-tight
-                     prose-h2:text-[21px] prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-paper-rule
-                     prose-h3:text-[17px] prose-h3:mt-10 prose-h3:mb-3
+                     prose-h2:text-[20px] prose-h2:mt-11 prose-h2:mb-4 prose-h2:pb-2.5 prose-h2:border-b prose-h2:border-paper-rule
+                     prose-h3:text-[16px] prose-h3:mt-8 prose-h3:mb-2.5
                      prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4 prose-a:decoration-1 prose-a:font-medium
                      prose-strong:text-ink prose-strong:font-semibold
-                     prose-li:text-ink-soft prose-li:leading-[1.9]
-                     prose-p:leading-[1.95] prose-p:text-ink-soft
+                     prose-li:text-ink-soft prose-li:leading-[1.8] prose-li:my-1
+                     prose-p:leading-[1.85] prose-p:text-ink-soft prose-p:my-3.5
                      prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-ink prose-blockquote:bg-paper-deep prose-blockquote:py-1
                      prose-img:rounded-lg"
           dangerouslySetInnerHTML={{
@@ -122,10 +122,16 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* 関連記事 */}
         {related.length > 0 && (
-          <section className="mt-20 pt-10 border-t border-paper-rule">
-            <h2 className="text-[18px] font-bold text-ink tracking-tight mb-5">
-              同じカテゴリの記事
-            </h2>
+          <section className="mt-14 pt-9">
+            <div className="rule-strong mb-3" />
+            <div className="flex items-baseline justify-between mb-4">
+              <h2 className="text-[17px] font-bold text-ink tracking-tight">
+                同じカテゴリの記事
+              </h2>
+              <span className="font-display italic text-[14px] text-accent">
+                Related
+              </span>
+            </div>
             <ul className="border-t border-paper-rule">
               {related.map((r) => (
                 <li key={r.slug} className="border-b border-paper-rule">
