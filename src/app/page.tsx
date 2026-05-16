@@ -53,10 +53,11 @@ export default function HomePage() {
           ビジネスツール・ガジェット
         </p>
 
-        <h1 className="animate-fadeUp-d1 text-[29px] md:text-[48px] font-bold text-ink leading-[1.45] md:leading-[1.34] tracking-tight text-balance">
-          仕事がはかどる道具を、
+        <h1 className="animate-fadeUp-d1 text-[24px] md:text-[40px] font-bold text-ink leading-[1.6] md:leading-[1.45] tracking-tight text-balance">
+          仕事、プライベートの生産性を最大化する
           <br className="hidden sm:block" />
-          <span className="text-accent">えらび抜いて</span>紹介する。
+          <span className="font-display text-accent">Professional</span>
+          のための道具をご紹介。
         </h1>
 
         <p className="animate-fadeUp-d2 mt-5 text-[14px] md:text-[15px] text-ink-soft leading-[1.8] max-w-xl">
