@@ -37,7 +37,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-[13px] text-paper/55 leading-[1.9] max-w-sm">
-              本当に使えた道具だけを、正直にレビュー。書くのもひとり、買うのもひとり。
+              実際に使って良かった仕事道具を中心に、気になる定番アイテムをレビューしています。
             </p>
           </div>
 

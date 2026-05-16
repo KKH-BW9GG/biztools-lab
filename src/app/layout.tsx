@@ -32,11 +32,11 @@ const BASE = "https://biztools-lab.vercel.app";
 
 export const metadata: Metadata = {
   title: {
-    default: "BizTools Lab | 使って良かったビジネスツールだけ紹介",
+    default: "BizTools Lab | ビジネスツール・ガジェットのレビューと比較",
     template: "%s | BizTools Lab",
   },
   description:
-    "元コンサルのビジネスマンが実際に買って使ったデスクグッズ・ガジェット・ビジネス書を正直にレビュー。本当に良かったものだけ紹介します。",
+    "実際に使って良かったビジネスツール・ガジェット・ビジネス書を中心に、気になる定番アイテムの機能・価格・使い勝手をレビュー。仕事道具えらびの参考に。",
   metadataBase: new URL(BASE),
   verification: { google: "S3vGER-nUToyH5njXOBp-aJw3x23rIG9U_U0E1AkA7k" },
   openGraph: {
@@ -55,7 +55,7 @@ const SITE_JSONLD = {
   name: "BizTools Lab",
   url: "https://biztools-lab.vercel.app",
   description:
-    "元コンサルのビジネスマンが実際に買って使ったデスクグッズ・ガジェット・ビジネス書を正直にレビュー。",
+    "実際に使って良かったビジネスツール・ガジェット・ビジネス書を中心に、気になる定番アイテムの機能・価格・使い勝手をレビュー。",
   inLanguage: "ja",
   potentialAction: {
     "@type": "SearchAction",
