@@ -12,33 +12,45 @@ export default function ArticleCard({
 
   return (
     <Link href={`/${article.slug}/`} className="block group h-full">
-      <article className="relative h-full pt-6 pb-7 border-t border-ink/20 hover:border-ink transition-colors duration-300">
-        <div className="flex items-start justify-between mb-4">
-          <span className="label-meta text-ink-soft">{article.category}</span>
+      <article className="flex h-full flex-col rounded-lg border border-paper-rule bg-paper p-6 transition-all duration-200 hover:border-ink/25 hover:shadow-[0_8px_28px_-12px_rgba(20,22,26,0.18)]">
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-[11px] font-semibold tracking-[0.04em] text-accent">
+            {article.category}
+          </span>
           {num && (
-            <span className="font-display text-[13px] text-ink-muted tabular-nums tracking-tight">
-              No.{num}
+            <span className="font-display text-[13px] text-ink-faint tabular-nums">
+              {num}
             </span>
           )}
         </div>
 
-        <h2 className="font-jp-serif text-[19px] md:text-[20px] font-medium text-ink leading-[1.45] tracking-tight group-hover:text-navy transition-colors duration-200 line-clamp-3 mb-3">
+        <h2 className="text-[16px] font-bold text-ink leading-[1.6] tracking-tight group-hover:text-accent transition-colors duration-200 line-clamp-3">
           {article.title}
         </h2>
 
-        <p className="text-[13px] text-ink-soft leading-relaxed line-clamp-2 mb-6">
+        <p className="mt-2.5 text-[13px] text-ink-muted leading-[1.8] line-clamp-2">
           {article.meta_description}
         </p>
 
-        <div className="flex items-center justify-between mt-auto">
-          <span className="font-display text-[11px] text-ink-muted tabular-nums tracking-wide">
+        <div className="mt-auto pt-5 flex items-center justify-between">
+          <span className="font-display text-[12px] text-ink-faint tabular-nums">
             {article.date}
           </span>
-          <span className="font-display italic text-[12px] text-navy opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <span className="inline-flex items-center gap-1 text-[12px] font-medium text-ink-muted group-hover:text-accent transition-colors">
             続きを読む
-            <span className="ml-1.5 inline-block group-hover:translate-x-0.5 transition-transform">
-              →
-            </span>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            >
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
           </span>
         </div>
       </article>

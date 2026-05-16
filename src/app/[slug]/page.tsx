@@ -65,56 +65,56 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       {/* Article masthead */}
-      <header className="max-w-3xl mx-auto px-4 pt-10 md:pt-16 pb-10">
-        <nav className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-ink-muted mb-10">
-          <Link href="/" className="hover:text-navy transition-colors">
-            Home
+      <header className="max-w-3xl mx-auto px-6 pt-12 md:pt-16 pb-10">
+        <nav className="flex items-center gap-2 text-[12px] text-ink-muted mb-8">
+          <Link href="/" className="hover:text-accent transition-colors">
+            ホーム
           </Link>
           <span className="text-ink-faint">/</span>
           <Link
             href={`/category/${encodeURIComponent(article.category)}/`}
-            className="hover:text-navy transition-colors"
+            className="hover:text-accent transition-colors"
           >
             {article.category}
           </Link>
         </nav>
 
-        <div className="flex items-baseline gap-4 mb-6 pb-4 border-b border-ink/15">
+        <div className="flex items-baseline gap-4 mb-5">
           <Link
             href={`/category/${encodeURIComponent(article.category)}/`}
-            className="label-meta hover:text-navy transition-colors"
+            className="text-[12px] font-semibold text-accent hover:underline underline-offset-4"
           >
             {article.category}
           </Link>
-          <span className="font-display text-[12px] text-ink-muted tabular-nums tracking-wide">
+          <span className="font-display text-[12px] text-ink-faint tabular-nums">
             {article.date}
           </span>
         </div>
 
-        <h1 className="font-jp-serif text-[28px] md:text-[40px] font-medium text-ink leading-[1.3] tracking-tight text-balance">
+        <h1 className="text-[26px] md:text-[38px] font-bold text-ink leading-[1.5] tracking-tight text-balance">
           {article.title}
         </h1>
 
         {article.meta_description && (
-          <p className="mt-6 font-jp-serif text-[16px] md:text-[18px] text-ink-soft leading-[1.85] italic max-w-2xl border-l-2 border-navy pl-5">
+          <p className="mt-6 text-[15px] md:text-[16px] text-ink-soft leading-[1.95] max-w-2xl border-l-2 border-accent pl-5">
             {article.meta_description}
           </p>
         )}
       </header>
 
-      <div className="max-w-3xl mx-auto px-4">
+      <div className="max-w-3xl mx-auto px-6">
         {/* 記事本文 */}
         <article
           className="prose prose-sm md:prose-base max-w-none
-                     prose-headings:font-jp-serif prose-headings:text-ink prose-headings:font-semibold prose-headings:tracking-tight
-                     prose-h2:text-[22px] prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-ink/30
+                     prose-headings:text-ink prose-headings:font-bold prose-headings:tracking-tight
+                     prose-h2:text-[21px] prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-paper-rule
                      prose-h3:text-[17px] prose-h3:mt-10 prose-h3:mb-3
-                     prose-a:text-navy prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4 prose-a:decoration-1 prose-a:font-medium
+                     prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4 prose-a:decoration-1 prose-a:font-medium
                      prose-strong:text-ink prose-strong:font-semibold
-                     prose-li:text-ink-soft
+                     prose-li:text-ink-soft prose-li:leading-[1.9]
                      prose-p:leading-[1.95] prose-p:text-ink-soft
-                     prose-blockquote:border-l-2 prose-blockquote:border-navy prose-blockquote:not-italic prose-blockquote:font-jp-serif prose-blockquote:text-ink
-                     prose-img:rounded-none"
+                     prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-ink prose-blockquote:bg-paper-deep prose-blockquote:py-1
+                     prose-img:rounded-lg"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(article.content),
           }}
@@ -122,27 +122,21 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* 関連記事 */}
         {related.length > 0 && (
-          <section className="mt-20 pt-10 border-t border-ink/30">
-            <div className="flex items-baseline justify-between mb-6">
-              <p className="label-meta">Related</p>
-              <p className="font-display italic text-[13px] text-ink-muted">
-                同じ領域から
-              </p>
-            </div>
-            <ul className="divide-y divide-ink/15 border-t border-b border-ink/15">
+          <section className="mt-20 pt-10 border-t border-paper-rule">
+            <h2 className="text-[18px] font-bold text-ink tracking-tight mb-5">
+              同じカテゴリの記事
+            </h2>
+            <ul className="border-t border-paper-rule">
               {related.map((r) => (
-                <li key={r.slug}>
+                <li key={r.slug} className="border-b border-paper-rule">
                   <Link
                     href={`/${r.slug}/`}
-                    className="group flex items-baseline gap-5 py-4 hover:pl-2 transition-all duration-300"
+                    className="group flex items-center gap-4 py-4"
                   >
-                    <span className="font-display italic text-navy text-[14px]">
-                      —
-                    </span>
-                    <span className="font-jp-serif text-[16px] text-ink group-hover:text-navy transition-colors flex-1 line-clamp-2">
+                    <span className="text-[15px] font-medium text-ink group-hover:text-accent transition-colors flex-1 line-clamp-2 leading-[1.7]">
                       {r.title}
                     </span>
-                    <span className="font-display text-[11px] text-ink-muted hidden sm:block">
+                    <span className="font-display text-[11px] text-ink-faint tabular-nums hidden sm:block flex-shrink-0">
                       {r.date}
                     </span>
                   </Link>
@@ -153,18 +147,24 @@ export default async function ArticlePage({ params }: Props) {
         )}
 
         {/* ナビゲーション */}
-        <div className="mt-16 mb-20 pt-8 border-t border-ink flex items-center justify-between">
+        <div className="mt-14 mb-20 pt-8 border-t border-paper-rule">
           <Link
             href="/"
-            className="font-display italic text-[14px] text-ink hover:text-navy border-b border-ink hover:border-navy pb-1 transition-colors"
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-ink hover:text-accent transition-colors"
           >
-            ← All Reviews
-          </Link>
-          <Link
-            href={`/category/${encodeURIComponent(article.category)}/`}
-            className="font-jp-serif text-[14px] text-ink-soft hover:text-navy transition-colors"
-          >
-            {article.category} →
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M19 12H5M11 19l-7-7 7-7" />
+            </svg>
+            レビュー一覧へ戻る
           </Link>
         </div>
       </div>

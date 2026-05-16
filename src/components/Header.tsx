@@ -10,35 +10,36 @@ const CATEGORIES = [
   { name: "ビジネス書", slug: "ビジネス書" },
 ];
 
+function Logo() {
+  return (
+    <span className="flex items-baseline gap-[3px] leading-none">
+      <span className="text-[19px] font-bold tracking-tight text-ink">
+        BizTools
+      </span>
+      <span className="text-[19px] font-bold tracking-tight text-accent">
+        Lab
+      </span>
+    </span>
+  );
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-paper/85 backdrop-blur-md border-b border-ink/15">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between h-14">
-          <Link
-            href="/"
-            className="flex items-baseline gap-1.5 group"
-            onClick={() => setOpen(false)}
-          >
-            <span className="font-display text-[20px] font-semibold text-ink tracking-tight leading-none">
-              BizTools
-            </span>
-            <span className="font-display italic text-[20px] font-medium text-navy tracking-tight leading-none">
-              Lab
-            </span>
-            <span className="hidden sm:inline-block ml-2 label-meta text-ink-muted text-[9px] pl-2 border-l border-ink/20 leading-none self-center">
-              Vol. 01
-            </span>
+    <header className="sticky top-0 z-50 bg-paper/90 backdrop-blur-md border-b border-paper-rule">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" onClick={() => setOpen(false)}>
+            <Logo />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-8">
             {CATEGORIES.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/category/${encodeURIComponent(cat.slug)}/`}
-                className="font-jp-serif text-[13px] text-ink-soft hover:text-navy transition-colors duration-150"
+                className="text-[13px] font-medium text-ink-soft hover:text-accent transition-colors duration-150"
               >
                 {cat.name}
               </Link>
@@ -46,30 +47,30 @@ export default function Header() {
           </nav>
 
           <button
-            className="md:hidden flex flex-col gap-[5px] p-2"
+            className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
             onClick={() => setOpen((v) => !v)}
             aria-label="メニュー"
           >
             <span
-              className={`block w-[18px] h-[1px] bg-ink transition-all duration-200 ${open ? "rotate-45 translate-y-[7px]" : ""}`}
+              className={`block w-[18px] h-[1.5px] bg-ink transition-all duration-200 ${open ? "rotate-45 translate-y-[6.5px]" : ""}`}
             />
             <span
-              className={`block w-[18px] h-[1px] bg-ink transition-all duration-200 ${open ? "opacity-0" : ""}`}
+              className={`block w-[18px] h-[1.5px] bg-ink transition-all duration-200 ${open ? "opacity-0" : ""}`}
             />
             <span
-              className={`block w-[18px] h-[1px] bg-ink transition-all duration-200 ${open ? "-rotate-45 -translate-y-[7px]" : ""}`}
+              className={`block w-[18px] h-[1.5px] bg-ink transition-all duration-200 ${open ? "-rotate-45 -translate-y-[6.5px]" : ""}`}
             />
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="md:hidden bg-paper border-t border-ink/10">
+        <div className="md:hidden bg-paper border-t border-paper-rule">
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
               href={`/category/${encodeURIComponent(cat.slug)}/`}
-              className="block px-6 py-3.5 font-jp-serif text-sm text-ink-soft hover:text-navy hover:bg-paper-deep transition-colors border-b border-paper-rule last:border-0"
+              className="block px-6 py-3.5 text-sm font-medium text-ink-soft hover:text-accent hover:bg-paper-deep transition-colors border-b border-paper-rule last:border-0"
               onClick={() => setOpen(false)}
             >
               {cat.name}

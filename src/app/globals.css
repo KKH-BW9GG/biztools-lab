@@ -5,40 +5,29 @@
 @layer base {
   body {
     @apply text-ink bg-paper antialiased;
-    font-feature-settings: 'kern' 1, 'palt' 1;
+    font-feature-settings: "kern" 1, "palt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Subtle paper grain */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.035;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply tracking-tight;
   }
 
   ::selection {
-    background: #1A3654;
-    color: #F4F0E8;
+    background: #1d4ed8;
+    color: #ffffff;
   }
 }
 
 @layer utilities {
+  /* Latin-only display face (Fraunces). Never apply to Japanese text. */
   .font-display {
-    font-family: var(--font-fraunces), var(--font-noto-serif), Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif;
     font-optical-sizing: auto;
-  }
-  .font-jp-serif {
-    font-family: var(--font-noto-serif), serif;
   }
   .text-balance {
     text-wrap: balance;
@@ -46,26 +35,27 @@
 }
 
 @layer components {
-  /* Hairline rules used as section dividers */
+  /* Hairline rules */
   .rule {
-    @apply h-px w-full bg-ink/15;
+    @apply h-px w-full bg-paper-rule;
   }
   .rule-strong {
     @apply h-px w-full bg-ink;
   }
 
-  /* Editorial label (small caps) */
+  /* Small caps label */
   .label-meta {
-    @apply text-[10px] font-semibold tracking-[0.2em] uppercase text-ink-muted;
+    @apply text-[11px] font-semibold tracking-[0.18em] uppercase text-ink-muted;
   }
 
+  /* --- Article body components --- */
   .affiliate-btn {
-    @apply inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-none
-           text-sm no-underline hover:bg-navy transition-all duration-200 my-2 border border-ink hover:border-navy;
+    @apply inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-md
+           text-sm no-underline hover:bg-accent transition-colors duration-200 my-2;
   }
 
   .affiliate-disclosure {
-    @apply bg-paper-deep px-5 py-4 border-l-2 border-navy
+    @apply bg-paper-deep px-5 py-4 border-l-2 border-accent rounded-r-md
            text-xs text-ink-soft leading-relaxed my-6;
   }
 
@@ -73,7 +63,7 @@
     @apply w-full border-collapse text-sm my-6;
   }
   .report-table th {
-    @apply bg-paper-deep text-ink px-4 py-3 text-left text-xs font-semibold tracking-wide border-b border-ink;
+    @apply bg-paper-deep text-ink px-4 py-3 text-left text-xs font-semibold tracking-wide border-b border-ink/15;
   }
   .report-table td {
     @apply border-b border-paper-rule px-4 py-3 align-top text-ink-soft;
@@ -87,10 +77,10 @@
     @apply text-xs font-medium text-ink-muted w-20 flex-shrink-0;
   }
   .score-bar .bar-bg {
-    @apply flex-1 h-1.5 bg-paper-rule overflow-hidden;
+    @apply flex-1 h-1.5 bg-paper-rule rounded-full overflow-hidden;
   }
   .score-bar .bar-fill {
-    @apply h-full bg-navy transition-all duration-500;
+    @apply h-full bg-accent rounded-full transition-all duration-500;
   }
   .score-bar .value {
     @apply text-xs font-bold text-ink w-8 text-right;
@@ -98,12 +88,13 @@
 
   /* Highlight box */
   .highlight-box {
-    @apply bg-paper-deep border-l-2 border-navy p-5 my-6;
+    @apply bg-paper-deep border-l-2 border-accent rounded-r-md p-5 my-6;
   }
   .highlight-box.warning {
     @apply border-l-2 border-ink;
   }
-  .highlight-box h4, .highlight-box strong:first-child {
+  .highlight-box h4,
+  .highlight-box strong:first-child {
     @apply text-ink font-bold text-sm mb-2 block;
   }
 
@@ -118,42 +109,44 @@
     @apply font-bold text-ink text-sm mb-2 flex items-start gap-2;
   }
   .faq-item .question::before {
-    content: 'Q.';
+    content: "Q.";
     font-family: var(--font-fraunces), serif;
-    @apply text-navy font-semibold text-base flex-shrink-0;
+    @apply text-accent font-semibold text-base flex-shrink-0;
   }
   .faq-item .answer {
     @apply text-ink-soft text-sm leading-relaxed pl-7;
   }
 
-  /* Pros/cons */
+  /* Pros / cons */
   .pros-cons {
-    @apply grid md:grid-cols-2 gap-0 my-4 border border-paper-rule;
+    @apply grid md:grid-cols-2 gap-0 my-4 border border-paper-rule rounded-md overflow-hidden;
   }
-  .pros-cons .pros, .pros-cons .cons {
+  .pros-cons .pros,
+  .pros-cons .cons {
     @apply p-5 text-sm;
   }
   .pros-cons .pros {
     @apply border-r border-paper-rule;
   }
-  .pros-cons .pros li::marker, .pros-cons .cons li::marker {
+  .pros-cons .pros li::marker,
+  .pros-cons .cons li::marker {
     @apply text-ink-muted;
   }
 
   /* Recommendation */
   .recommendation-box {
-    @apply bg-paper-deep border-l-2 border-navy p-5 my-6;
+    @apply bg-paper-deep border-l-2 border-accent rounded-r-md p-5 my-6;
   }
   .recommendation-box strong {
-    @apply text-navy;
+    @apply text-accent;
   }
 
   /* Article tables */
   .prose table {
-    @apply text-sm border-t border-b border-ink;
+    @apply text-sm border-t border-b border-ink/15;
   }
   .prose table th {
-    @apply bg-transparent text-ink font-semibold text-xs border-b border-ink px-4 py-3 tracking-wide uppercase;
+    @apply bg-transparent text-ink font-semibold text-xs border-b border-ink/15 px-4 py-3 tracking-wide uppercase;
   }
   .prose table td {
     @apply border-b border-paper-rule px-4 py-3 text-ink-soft;

@@ -21,33 +21,36 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-ink bg-paper">
-      <div className="max-w-6xl mx-auto px-6 py-14">
-        <div className="grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-5">
-            <Link href="/" className="flex items-baseline gap-1.5 mb-3">
-              <span className="font-display text-[22px] font-semibold text-ink tracking-tight leading-none">
+    <footer className="bg-ink text-paper">
+      <div className="max-w-5xl mx-auto px-6 py-14">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-6">
+            <Link
+              href="/"
+              className="flex items-baseline gap-[3px] leading-none"
+            >
+              <span className="text-[20px] font-bold tracking-tight">
                 BizTools
               </span>
-              <span className="font-display italic text-[22px] font-medium text-navy tracking-tight leading-none">
+              <span className="text-[20px] font-bold tracking-tight text-accent">
                 Lab
               </span>
             </Link>
-            <p className="font-jp-serif text-[14px] text-ink-soft leading-[1.85] max-w-sm">
-              本当に使えた道具だけを、短い手記にして残しています。
-              <br />
-              書くのもひとり、買うのもひとり。
+            <p className="mt-4 text-[13px] text-paper/55 leading-[1.9] max-w-sm">
+              本当に使えた道具だけを、正直にレビュー。書くのもひとり、買うのもひとり。
             </p>
           </div>
 
-          <div className="md:col-span-3 md:col-start-7">
-            <p className="label-meta mb-5">Sections</p>
+          <div className="md:col-span-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-paper/45 mb-4">
+              Sections
+            </p>
             <ul className="space-y-2.5">
               {LINKS.map((l) => (
                 <li key={l.name}>
                   <Link
                     href={l.href}
-                    className="font-jp-serif text-[14px] text-ink-soft hover:text-navy transition-colors"
+                    className="text-[13px] text-paper/70 hover:text-paper transition-colors"
                   >
                     {l.name}
                   </Link>
@@ -57,19 +60,18 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="label-meta mb-5">Disclosure</p>
-            <p className="text-[12px] text-ink-soft leading-[1.8]">
-              当サイトはAmazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたAmazonアソシエイト・プログラムの参加者です。
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-paper/45 mb-4">
+              Disclosure
+            </p>
+            <p className="text-[12px] text-paper/55 leading-[1.9]">
+              当サイトはAmazonアソシエイト・プログラムの参加者です。適格販売により収入を得る場合があります。
             </p>
           </div>
         </div>
 
-        <div className="mt-14 pt-6 border-t border-paper-rule flex items-baseline justify-between">
-          <p className="font-display text-[11px] text-ink-muted tabular-nums tracking-wider">
-            &copy; {new Date().getFullYear()} BizTools Lab. All rights reserved.
-          </p>
-          <p className="font-display italic text-[11px] text-ink-muted">
-            Made with care · Tokyo
+        <div className="mt-12 pt-6 border-t border-paper/12">
+          <p className="font-display text-[11px] text-paper/45 tabular-nums tracking-wide">
+            &copy; {new Date().getFullYear()} BizTools Lab
           </p>
         </div>
       </div>

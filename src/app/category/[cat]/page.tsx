@@ -27,49 +27,53 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <div className="bg-paper min-h-screen">
-      <div className="max-w-6xl mx-auto px-6 pt-10 md:pt-14 pb-20">
-        <nav className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-ink-muted mb-12">
-          <Link href="/" className="hover:text-navy transition-colors">
-            Home
+      <div className="max-w-5xl mx-auto px-6 pt-12 md:pt-16 pb-20">
+        <nav className="flex items-center gap-2 text-[12px] text-ink-muted mb-8">
+          <Link href="/" className="hover:text-accent transition-colors">
+            ホーム
           </Link>
           <span className="text-ink-faint">/</span>
           <span className="text-ink">{category}</span>
         </nav>
 
-        <div className="rule-strong mb-8" />
-
-        <div className="grid md:grid-cols-12 gap-6 md:gap-10 mb-16">
-          <div className="md:col-span-3">
-            <p className="label-meta">Section</p>
-          </div>
-          <div className="md:col-span-9">
-            <h1 className="font-jp-serif text-[36px] md:text-[56px] font-medium text-ink leading-[1.05] tracking-tight text-balance">
-              {category}
-            </h1>
-            <p className="mt-6 font-display italic text-ink-muted text-[15px]">
-              現在{" "}
-              <span className="text-ink not-italic font-medium tabular-nums">
-                {articles.length}
-              </span>{" "}
-              本のレビューを公開中
-            </p>
-          </div>
+        <div className="border-b border-paper-rule pb-8 mb-10">
+          <p className="label-meta mb-3">Section</p>
+          <h1 className="text-[28px] md:text-[40px] font-bold text-ink leading-[1.4] tracking-tight">
+            {category}
+          </h1>
+          <p className="mt-3 text-[13px] text-ink-muted">
+            現在{" "}
+            <span className="font-display text-[14px] text-ink tabular-nums">
+              {articles.length}
+            </span>{" "}
+            本のレビューを公開中
+          </p>
         </div>
 
-        <div className="border-t border-ink/30 pt-2">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
-            {articles.map((article, i) => (
-              <ArticleCard key={article.slug} article={article} index={i} />
-            ))}
-          </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {articles.map((article, i) => (
+            <ArticleCard key={article.slug} article={article} index={i} />
+          ))}
         </div>
 
-        <div className="mt-20 pt-8 border-t border-ink">
+        <div className="mt-16 pt-8 border-t border-paper-rule">
           <Link
             href="/"
-            className="font-display italic text-[14px] text-ink hover:text-navy border-b border-ink hover:border-navy pb-1 transition-colors"
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-ink hover:text-accent transition-colors"
           >
-            ← All Reviews
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M19 12H5M11 19l-7-7 7-7" />
+            </svg>
+            レビュー一覧へ戻る
           </Link>
         </div>
       </div>
